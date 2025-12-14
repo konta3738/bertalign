@@ -1,8 +1,7 @@
 # Bertalign
 
-An automatic mulitlingual sentence aligner.
-
-Bertalign is designed to facilitate the construction of multilingual parallel corpora and translation memories, which have a wide range of applications in translation-related research such as corpus-based translation studies, contrastive linguistics, computer-assisted translation, translator education and machine translation.
+This is a custom version of Bertalign. This repository is forked from the official bertalign repo.
+The bertalign here uses SONAR text encoder for better multilingual performance.
 
 ## Approach
 
@@ -11,10 +10,6 @@ Bertalign uses [sentence-transformers](https://github.com/UKPLab/sentence-transf
 ## Performance
 
 According to our experiments, Bertalign achieves more accurate results on [Text+Berg](./text+berg), a publicly available German-French parallel corpus, than the traditional length-, dictionary-, or MT-based alignment methods as reported in [Thompson & Koehn (2019)](https://aclanthology.org/D19-1136/)
-
-## Languges Supported
-
-Alignment between 25 languages: Catalan (ca), Chinese (zh), Czech (cs), Danish (da), Dutch (nl), English(en), Finnish (fi), French (fr), German (de), Greek (el), Hungarian (hu), Icelandic (is), Italian (it), Lithuanian (lt), Latvain (lv), Norwegian (no), Polish (pl), Portuguese (pt), Romanian (ro), Russian (ru), Slovak (sk), Slovenian (sl), Spanish (es), Swedish (sv), and Turkish (tr).
 
 ## Installation
 
@@ -233,34 +228,3 @@ log_final_scores(scores)
 ## Citation
 
 Lei Liu & Min Zhu. 2022. Bertalign: Improved word embedding-based sentence alignment for Chinese–English parallel corpora of literary texts, *Digital Scholarship in the Humanities*. [https://doi.org/10.1093/llc/fqac089](https://doi.org/10.1093/llc/fqac089).
-
-## Funding
-
-The work is supported by the MOE Foundation of Humanities and Social Sciences (Grant No. 17YJC740055).
-
-## Licence
-
-Bertalign is released under the [GNU General Public License v3.0](./LICENCE)
-
-## Credits
-
-##### Main Libraries
-
-* [sentence-transformers](https://github.com/UKPLab/sentence-transformers)
-
-* [faiss](https://github.com/facebookresearch/faiss)
-
-* [sentence-splitter](https://github.com/mediacloud/sentence-splitter)
-
-##### Other Sentence Aligners
-
-* [Hunalign](http://mokk.bme.hu/en/resources/hunalign/)
-
-* [Bleualign](https://github.com/rsennrich/Bleualign)
-
-* [Vecalign](https://github.com/thompsonb/vecalign)
-
-## Todo List
-
-- Try the [CNN model](https://tfhub.dev/google/universal-sentence-encoder-multilingual/3) for sentence embeddings
-* Develop a GUI for Windows users
