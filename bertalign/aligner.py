@@ -28,8 +28,8 @@ class Bertalign:
         tgt = clean_text(tgt)
 
         # keep the raw code for SONAR (e.g., "cy", "en", "de")
-        src_lang_raw = detect_lang(src)
-        tgt_lang_raw = detect_lang(tgt)
+        src_lang_raw = src_lang or detect_lang(src)
+        tgt_lang_raw = tgt_lang or detect_lang(tgt)
 
         if is_split:
             src_sents = src.splitlines()
