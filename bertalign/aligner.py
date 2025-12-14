@@ -15,6 +15,8 @@ class Bertalign:
                  margin=True,
                  len_penalty=True,
                  is_split=False,
+                 src_lang=None,
+                 tgt_lang=None,
                ):
         
         self.max_align = max_align
