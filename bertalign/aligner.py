@@ -26,29 +26,32 @@ class Bertalign:
         
         src = clean_text(src)
         tgt = clean_text(tgt)
-        src_lang = detect_lang(src)
-        tgt_lang = detect_lang(tgt)
-        
+
+        # keep the raw code for SONAR (e.g., "cy", "en", "de")
+        src_lang_raw = detect_lang(src)
+        tgt_lang_raw = detect_lang(tgt)
+
         if is_split:
             src_sents = src.splitlines()
             tgt_sents = tgt.splitlines()
         else:
-            src_sents = split_sents(src, src_lang)
-            tgt_sents = split_sents(tgt, tgt_lang)
- 
+            src_sents = split_sents(src, src_lang_raw)
+            tgt_sents = split_sents(tgt, tgt_lang_raw)
+
         src_num = len(src_sents)
         tgt_num = len(tgt_sents)
-        
-        src_lang = LANG.ISO[src_lang]
-        tgt_lang = LANG.ISO[tgt_lang]
-        
+
+        # convert only for printing / metadata
+        src_lang = LANG.ISO[src_lang_raw]
+        tgt_lang = LANG.ISO[tgt_lang_raw]
+
         print("Source language: {}, Number of sentences: {}".format(src_lang, src_num))
         print("Target language: {}, Number of sentences: {}".format(tgt_lang, tgt_num))
 
         print("Embedding source and target text using {} ...".format(model.model_name))
-        src_vecs, src_lens = model.transform(src_sents, max_align - 1)
-        tgt_vecs, tgt_lens = model.transform(tgt_sents, max_align - 1)
-
+        src_vecs, src_lens = model.transform(src_sents, max_align - 1, lang=src_lang_raw)
+        tgt_vecs, tgt_lens = model.transform(tgt_sents, max_align - 1, lang=tgt_lang_raw)
+        
         char_ratio = np.sum(src_lens[0,]) / np.sum(tgt_lens[0,])
 
         self.src_lang = src_lang
